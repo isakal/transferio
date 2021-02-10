@@ -2,15 +2,15 @@ import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from app.config import TestingConfig, DevelopmentConfig, ProductionConfig
-# blueprints
-from app.errors.handlers import errors
-from app.home.routes import home
 
 
 app = Flask(__name__)
 app.config.from_object(DevelopmentConfig)
 
 db = SQLAlchemy()
+
+from app.errors.handlers import errors
+from app.home.routes import home
 
 app.register_blueprint(errors)
 app.register_blueprint(home)
