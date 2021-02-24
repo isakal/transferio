@@ -5,7 +5,7 @@
     Welcome to the homepage!
 </h1>
 
- {% if message %}
+{% if message %}
         <p>{{ message }}</p>
 {% endif %}
 
@@ -13,20 +13,19 @@
 
         <p>
             <label for="departure">Departure</label><br>
-            <input type="text" name="departure" required />
+            <input type="text" id="departure" name="departure" required />
         </p>
 
-        <p>
 
         <p>
             <label for="destination">Destination</label><br>
-            <input type="text" name="destination" required />
+            <input type="text" id="destination" name="destination" required />
 
         </p>
 
         <p>
             <label for="number_of_passengers">Number of passengers</label><br>
-            <input type="number" id="number_of_passengers" name="number_of_passengers" min="1" value="1" onkeydown="return false" required />
+            <input type="number" id="number_of_passengers" name="number_of_passengers" min="1" max="28" value="1" onkeydown="return false" required />
         </p>
 
         <p>
@@ -38,5 +37,47 @@
             <input type="submit">
         </p>
     </form>
+    <script>
+        let autocomplete, autocomplete2;
+
+        function initAutocomplete() {
+            autocomplete = new google.maps.places.Autocomplete(
+                document.getElementById("departure"),
+                {
+                    types: ["(cities)"],
+                    componentRestrictions: {"country": ["HR"]},
+                    fields: ["place_id", "geometry", "name"]
+                });
+
+            autocomplete2 = new google.maps.places.Autocomplete(
+                document.getElementById("destination"),
+                {
+                    types: ["(cities)"],
+                    componentRestrictions: {"country": ["HR"]},
+                    fields: ["place_id", "geometry", "name"]
+                });
+
+            autocomplete.addListener("place_changed", function(){
+                var place = this.getPlace();
+                if (!place.geometry) {
+                    document.getElementById("departure").value = "";
+                }
+                else {
+                    document.getElementById("departure").value = place.name;
+                }
+            });
+
+
+            autocomplete2.addListener("place_changed", function(){
+                var place = this.getPlace();
+                if (!place.geometry) {
+                    document.getElementById("destination").value = "";
+                }
+                else {
+                    document.getElementById("destination").value = place.name;
+                }
+            });
+        }
+    </script>
 
 {% endblock content %}
