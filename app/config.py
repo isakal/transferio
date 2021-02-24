@@ -3,9 +3,6 @@ import string
 import random
 
 
-letters = string.ascii_letters
-
-
 class BaseConfig():
     """base config"""
     SECRET_KEY = os.environ.get("secret_key", "".join(
