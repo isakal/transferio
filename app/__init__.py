@@ -1,4 +1,5 @@
 import os
+import googlemaps
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from app.config import TestingConfig, DevelopmentConfig, ProductionConfig
@@ -8,6 +9,8 @@ app = Flask(__name__)
 app.config.from_object(DevelopmentConfig)
 
 db = SQLAlchemy()
+
+gmaps = googlemaps.Client(key=os.environ.get("GOOGLE_API_KEY"))
 
 from app.errors.handlers import errors
 from app.home.routes import home

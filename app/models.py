@@ -27,6 +27,6 @@ class Transfer(db.Model):
     dest = db.Column(db.String(255), nullable=False)
     dest_addr = db.Column(db.String(255), nullable=False)
     vehicle = db.Column(db.Enum(Vehicles), nullable=False)  # TODO: vidi kako ovo sranje radi
-    price = db.Column(db.Float(precision=2), nullable=False)
+    price = db.Column(db.Float(precision=2), nullable=False)  # EURO
     is_twoway = db.Column(db.Boolean, default=False)
     passenger_amt = db.Column(db.Integer, nullable=False)

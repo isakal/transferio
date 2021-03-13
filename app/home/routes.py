@@ -1,7 +1,7 @@
 from datetime import date
 from app.models import Vehicles, Transfer
-from app.home.utils import get_available_vehicles
 from flask import Blueprint, render_template, request, redirect, url_for
+from app.home.utils import get_available_vehicles, calculate_distance, get_offers
 
 
 home = Blueprint('home', __name__)
@@ -18,12 +18,15 @@ def homepage():
 
         return redirect(url_for("home.transfer", departure=departure, destination=destination, num_of_pass=num_of_pass, departure_date=departure_date))
 
-    return render_template('home.html', title='Transferio - Home', today=today)
+    return render_template('home.html', title='Home', today=today)
 
 
 @home.route('/transfer/<string:departure>/<string:destination>/<int:num_of_pass>/<string:departure_date>', methods=['GET', 'POST'])
 def transfer(departure, destination, num_of_pass, departure_date):
 
     available_vehicles = get_available_vehicles(num_of_pass)
+    distance = calculate_distance(departure, destination)
 
-    return render_template("transfer.html", message=available_vehicles)
+    offers = get_offers(available_vehicles, distance)
+
+    return render_template("transfer.html", message=offers[0], offers=offers)

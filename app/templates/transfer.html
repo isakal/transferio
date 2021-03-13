@@ -1,8 +1,21 @@
 {% extends "base.html" %}
 {% block content %}
 
-{% if message %}
-        <p>{{ message }}</p>
-{% endif %}
+<!-- {% if message %} -->
+<!--         <p>{{ message }}</p> -->
+<!-- {% endif %} -->
+
+
+{% for offer in offers %}
+
+<div class="offer">
+    Vehicle Type : {{ offer["vehicle_type"] }}<br>
+    Maximum number of passengers: {{ offer["max_num_of_pass"] }}<br>
+    Price: {{ offer["price"] }}<br>
+
+</div>
+
+{% endfor %}
+
 
 {% endblock content %}

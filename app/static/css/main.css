@@ -16,3 +16,14 @@ p{
     margin-top: 50px;
     text-align: center !important;
 }
+
+.offer{
+    padding: 20px;
+    border: 1px solid red;
+    background-color: rgba(201, 76, 76, 0.2);
+    margin: 5px;
+}
+
+#number_of_passengers{
+    caret-color: transparent;
+}

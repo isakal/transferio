@@ -14,6 +14,7 @@ services:
         restart: always
         environment: 
             DB_URI: postgres://root:transferio@postgres/transferio
+            GOOGLE_API_KEY: "${GOOGLE_API_KEY}"
     
     postgres:
         container_name: transferio_postgres

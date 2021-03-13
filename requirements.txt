@@ -1,3 +1,4 @@
 flask
+googlemaps
 psycopg2-binary
 flask_sqlalchemy
