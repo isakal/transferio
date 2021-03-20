@@ -20,20 +20,35 @@ def homepage():
         num_of_pass = request.form.get("number_of_passengers")
         departure_date = request.form.get("departure_date")
 
-        return redirect(url_for("home.transfer", departure=departure, destination=destination, num_of_pass=num_of_pass, departure_date=departure_date))
+        return redirect(url_for("home.vehicles",
+                        departure=departure,
+                        destination=destination,
+                        num_of_pass=num_of_pass,
+                        departure_date=departure_date))
 
     return render_template('home.html', title='Home', today=today)
 
 
 @home.route('/transfer/<string:departure>/<string:destination>/<int:num_of_pass>/<string:departure_date>', methods=['GET', 'POST'])
-def transfer(departure, destination, num_of_pass, departure_date):
+def vehicles(departure, destination, num_of_pass, departure_date):
 
     available_vehicles = get_available_vehicles(num_of_pass)
     distance = calculate_distance(departure, destination)
 
     offers = get_offers(available_vehicles, distance)
 
-    return render_template("transfer.html", message=offers[0], offers=offers)
+    return render_template("vehicles.html",
+                           offers=offers, departure=departure,
+                           destination=destination,
+                           num_of_pass=num_of_pass,
+                           departure_date=departure_date
+                           )
+
+
+@home.route('/transfer/<string:departure>/<string:destination>/<int:num_of_pass>/<string:departure_date>/<string:vehicle>', methods=['GET', 'POST'])
+def transfer_data(departure, destination, num_of_pass, departure_date, vehicle):
+
+    return vehicle
 
 
 @home.route('/send-mail')
