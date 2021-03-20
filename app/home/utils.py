@@ -56,7 +56,7 @@ def get_offers(available_vehicles, distance):
         elif k == "Minivan":
             price_mod = 1.3
         elif k == "Minibus":
-            price_mod = 1.5
+            price_mod = 2.5
 
         offer = {"vehicle_type": k, "max_num_of_pass": v, "price": base_price * price_mod}
         offers.append(offer)
