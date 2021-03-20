@@ -30,3 +30,4 @@ class Transfer(db.Model):
     price = db.Column(db.Float(precision=2), nullable=False)  # EURO
     is_twoway = db.Column(db.Boolean, default=False)
     passenger_amt = db.Column(db.Integer, nullable=False)
+    contact_email = db.Column(db.String(255), nullable=False)
