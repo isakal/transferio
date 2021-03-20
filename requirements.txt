@@ -1,4 +1,5 @@
 flask
+flask-mail
 googlemaps
 psycopg2-binary
 flask_sqlalchemy

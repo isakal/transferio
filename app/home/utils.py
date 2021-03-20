@@ -1,4 +1,6 @@
-from app import gmaps
+import os
+from app import gmaps, mail
+from flask_mail import Message
 
 
 PRICE_PER_KM = 1.5
@@ -60,3 +62,9 @@ def get_offers(available_vehicles, distance):
         offers.append(offer)
 
     return offers
+
+
+def send_transfer_data_mail():
+    msg = Message('test mail', sender=os.environ.get("transferio_EMAIL"), recipients=["sakalivan4@gmail.com"])
+    msg.body = "test"
+    mail.send(msg)
