@@ -16,7 +16,13 @@
         <div class="pickup-vehicle" >
             <div class="col-wrapper">
                 <div class="col-md-4">
-                    <img src="https://click2shuttle.com/wp-content/themes/click2shuttle/assets/images/Vclass.png" class="lazyloaded" data-ll-status="loaded">
+                    {%  if "Limo" == offer["vehicle_type"] %}
+                    <img src="{{ url_for('static', filename='img/limo.png') }}" class="lazyloaded" data-ll-status="loaded">
+                    {%  elif "Minivan" == offer["vehicle_type"] %}
+                    <img src="{{ url_for('static', filename='img/minivan.png') }}" class="lazyloaded" data-ll-status="loaded">
+                    {%  elif "Minibus" == offer["vehicle_type"] %}
+                    <img src="{{ url_for('static', filename='img/minibus.png') }}" class="lazyloaded" data-ll-status="loaded">
+                    {% endif %}
                 </div>
                 <div class="col-md-3">
                     <h3>{{ offer["vehicle_type"] }}</h3>
