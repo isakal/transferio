@@ -10,56 +10,45 @@
 </header>
 
 <section class="container main-form new-form clearfix">
-    <div class="paths visible-path">
-        <div class="select-path for-web">
-            {% for offer in offers %}
 
-    <!-- <div class="offer"> -->
-    <!--     Vehicle Type : {{ offer["vehicle_type"] }}<br> -->
-    <!--     Maximum number of passengers: {{ offer["max_num_of_pass"] }}<br> -->
-    <!--     Price: {{ offer["price"] }} €<br> -->
+    {% for offer in offers %}
 
-    <!-- </div> -->
-
-
-                <div class="pickup-vehicle" id="vanLuxury">
-                    <div class="col-wrapper">
-                        <div class="col-md-4">
-                            <img src="https://click2shuttle.com/wp-content/themes/click2shuttle/assets/images/Vclass.png" class="lazyloaded" data-ll-status="loaded">
-                        </div>
-                        <div class="col-md-3">
-                            <h3>{{ offer["vehicle_type"] }}</h3>
-                            <p>Vehicle type</p>
-                        </div>
-                        <div class="col-md-2">
-                            <h3>{{ offer["max_num_of_pass"] }}</h3>
-                            <p>Max. persons</p>
-                        </div>
-                        <div class="col-md-3">
-                            <span id="vanLuxVClassPriceEur">{{ offer["price"] }}</span> <span> €</span>
-                            </h3>
-                            <p>Price</p>
-                        </div>
-                    </div>
-                    <div class="right-section">
-                        <div class="dot-border">
-                            <div class="circle-top">
-                            </div><div class="bord">
-                            </div><div class="circle-bot">
-                            </div>
-                        </div>
-                        <div class="button-wrapper">
-                            <a href="{{ url_for('home.transfer_data', departure=departure, destination=destination, num_of_pass=num_of_pass, departure_date=departure_date, vehicle=offer['vehicle_type']) }}">
-                                <button class="select-car">select</button>
-                            </a>
-                        </div>
+        <div class="pickup-vehicle" >
+            <div class="col-wrapper">
+                <div class="col-md-4">
+                    <img src="https://click2shuttle.com/wp-content/themes/click2shuttle/assets/images/Vclass.png" class="lazyloaded" data-ll-status="loaded">
+                </div>
+                <div class="col-md-3">
+                    <h3>{{ offer["vehicle_type"] }}</h3>
+                    <p>Vehicle type</p>
+                </div>
+                <div class="col-md-2">
+                    <h3>{{ offer["max_num_of_pass"] }}</h3>
+                    <p>Max. persons</p>
+                </div>
+                <div class="col-md-3">
+                    <span id="vanLuxVClassPriceEur">{{ offer["price"] }}</span> <span> €</span>
+                    </h3>
+                    <p>Price</p>
+                </div>
+            </div>
+            <div class="right-section">
+                <div class="dot-border">
+                    <div class="circle-top">
+                    </div><div class="bord">
+                    </div><div class="circle-bot">
                     </div>
                 </div>
-
-            {% endfor %}
-
+                <div class="button-wrapper">
+                    <a href="{{ url_for('home.transfer_data', departure=departure, destination=destination, num_of_pass=num_of_pass, departure_date=departure_date, vehicle=offer['vehicle_type']) }}">
+                        <button class="select-car">select</button>
+                    </a>
+                </div>
+            </div>
         </div>
-    </div>
+
+    {% endfor %}
+
 </section>
 
 {% endblock content %}
