@@ -1,7 +1,7 @@
 from app import db
 from datetime import date
 from app.models import Vehicles, Transfer
-from flask import Blueprint, render_template, request, redirect, url_for
+from flask import Blueprint, render_template, request, redirect, url_for, abort
 from app.home.utils import get_available_vehicles, calculate_distance, get_offers, send_transfer_data_mail, calculate_price_final
 
 
@@ -50,6 +50,9 @@ def vehicles(departure, destination, num_of_pass, departure_date):
 def transfer_data(departure, destination, num_of_pass, departure_date, vehicle):
 
     today = date.today()
+
+    if vehicle not in [v.name for v in Vehicles]:
+        abort(404)
 
     if request.method == "POST":
         dptr = request.form.get("departure")
