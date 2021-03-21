@@ -57,13 +57,6 @@ def get_offers(available_vehicles, distance):
     offers = []
 
     for k, v in available_vehicles.items():
-        # if k == "Limo":
-        #     price_mod = 1
-        # elif k == "Minivan":
-        #     price_mod = 1.3
-        # elif k == "Minibus":
-        #     price_mod = 2.5
-
         price_mod = PRICE_MODS[k]
 
         offer = {"vehicle_type": k, "max_num_of_pass": v, "price": base_price * price_mod}
@@ -84,7 +77,26 @@ def calculate_price_final(vehicle, departure, destination, is_twoway):
     return price
 
 
-def send_transfer_data_mail():
-    msg = Message('test mail', sender=os.environ.get("transferio_EMAIL"), recipients=["sakalivan4@gmail.com"])
-    msg.body = "test"
+def send_transfer_data_mail(transfer):
+    msg = Message()
+    msg.subject = f"Transfer reservation #{transfer.id}"
+    msg.body = f"""Thank you for using transfer.io
+
+Reservation info:
+
+Pickup location: {transfer.dptr}
+Pickup Address: {transfer.dptr_addr}
+Departure date: {transfer.dptr_date.strftime('%d.%m.%Y.')}
+
+Dropoff location: {transfer.dest}
+Dropoff Address: {transfer.dest_addr}
+
+Vehicle: {transfer.vehicle.name}
+Two way: {"Yes" if transfer.is_twoway else "No"}
+
+Price : {transfer.price} €
+
+    """
+    msg.add_recipient(transfer.contact_email)
+
     mail.send(msg)

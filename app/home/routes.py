@@ -81,7 +81,9 @@ def transfer_data(departure, destination, num_of_pass, departure_date, vehicle):
         db.session.add(transfer)
         db.session.commit()
 
-        return str(transfer.id)
+        send_transfer_data_mail(transfer)
+
+        return render_template("thank_you.html")
     else:
         return render_template("transfer_details.html",
                                title="Transfer Details",
@@ -90,10 +92,3 @@ def transfer_data(departure, destination, num_of_pass, departure_date, vehicle):
                                destination=destination,
                                num_of_pass=num_of_pass,
                                )
-
-
-@home.route('/send-mail')
-def send_mail():
-    send_transfer_data_mail()
-
-    return "sent"

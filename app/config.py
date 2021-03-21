@@ -14,6 +14,7 @@ class BaseConfig():
     MAIL_SERVER = "smtp.gmail.com"
     MAIL_USERNAME = os.environ.get("transferio_EMAIL")
     MAIL_PASSWORD = os.environ.get("transferio_PASSWORD")
+    MAIL_DEFAULT_SENDER = os.environ.get("transferio_EMAIL")
 
 
 class TestingConfig(BaseConfig):
