@@ -92,3 +92,8 @@ def transfer_data(departure, destination, num_of_pass, departure_date, vehicle):
                                destination=destination,
                                num_of_pass=num_of_pass,
                                )
+
+
+# @home.route("/thankyou")
+# def thankyou():
+#     return render_template("thank_you.html")
